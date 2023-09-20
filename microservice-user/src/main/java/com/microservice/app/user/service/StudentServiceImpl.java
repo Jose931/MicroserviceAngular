@@ -7,12 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.microservice.app.user.models.entity.Student;
+import com.microservice.app.user.models.repository.StudentRespository;
 
 @Service
 public class StudentServiceImpl implements IStudentService{
 	
 	@Autowired
-	private IStudentService studentDao;
+	private StudentRespository studentDao;
 
 	@Override
 	@Transactional(readOnly = true)
