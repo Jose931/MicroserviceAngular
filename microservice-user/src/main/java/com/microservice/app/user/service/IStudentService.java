@@ -1,16 +1,8 @@
 package com.microservice.app.user.service;
 
-import java.util.Optional;
-
 import com.microservice.app.user.models.entity.Student;
+import com.microservice.commons.service.ICommonService;
 
-public interface IStudentService {
+public interface IStudentService extends ICommonService<Student>{
 	
-	public Iterable<Student> findAll();
-	
-	public Optional<Student> findById(Long id);
-	
-	public Student save(Student student);
-	
-	public void deleteById(Long id);
 }
