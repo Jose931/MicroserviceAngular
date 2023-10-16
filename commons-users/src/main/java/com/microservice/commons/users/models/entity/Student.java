@@ -1,4 +1,4 @@
-package com.microservice.app.user.models.entity;
+package com.microservice.commons.users.models.entity;
 
 import java.util.Date;
 
@@ -72,6 +72,22 @@ public class Student {
 
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		
+		if(this == obj) {
+			return true;
+		}
+		
+		if(!(obj instanceof Student)) {
+			return false;
+		}
+		
+		Student s = (Student) obj;
+		
+		return this.id != null && this.id.equals(s.getId());
 	}
 	
 	
