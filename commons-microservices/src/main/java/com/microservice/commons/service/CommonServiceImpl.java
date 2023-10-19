@@ -9,30 +9,30 @@ import org.springframework.transaction.annotation.Transactional;
 public class CommonServiceImpl<E, R extends CrudRepository<E, Long>> implements ICommonService<E>{
 	
 	@Autowired
-	protected R studentDao;
+	protected R repository;
 
 	@Override
 	@Transactional(readOnly = true)
 	public Iterable<E> findAll() {
-		return studentDao.findAll();
+		return repository.findAll();
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public Optional<E> findById(Long id) {
-		return studentDao.findById(id);
+		return repository.findById(id);
 	}
 
 	@Override
 	@Transactional
 	public E save(E entity) {
-		return studentDao.save(entity);
+		return repository.save(entity);
 	}
 
 	@Override
 	@Transactional
 	public void deleteById(Long id) {
-		studentDao.deleteById(id);
+		repository.deleteById(id);
 		
 	}
 

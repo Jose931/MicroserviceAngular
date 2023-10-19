@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -17,12 +18,18 @@ import com.microservice.commons.controllers.CommonController;
 import com.microservice.commons.exams.models.entity.Exam;
 import com.microservice.commons.users.models.entity.Student;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class CourseController extends CommonController<Course, ICourseService>{
 
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<?> edit(@RequestBody Course course, @PathVariable Long id){
+	public ResponseEntity<?> edit(@Valid @RequestBody Course course, BindingResult result,@PathVariable Long id){
+		
+		if(result.hasErrors()) {
+			return this.validate(result);
+		}
 		
 		Optional<Course> c = this.service.findById(id);
 		
@@ -50,7 +57,7 @@ public class CourseController extends CommonController<Course, ICourseService>{
 			course.addStudents(s);
 		});
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(course);
+		return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(course));
 	}
 	
 	@PutMapping("/{id}/delte-student")
@@ -66,7 +73,7 @@ public class CourseController extends CommonController<Course, ICourseService>{
 		
 		course.removeStudents(student);
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(course);
+		return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(course));
 	}
 	
 	@GetMapping("/student/{id}")
@@ -89,7 +96,7 @@ public class CourseController extends CommonController<Course, ICourseService>{
 			course.addExam(e);
 		});
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(course);
+		return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(course));
 	}
 	
 	@PutMapping("/{id}/delte-exam")
@@ -105,6 +112,6 @@ public class CourseController extends CommonController<Course, ICourseService>{
 		
 		course.removeExam(exam);
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(course);
+		return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(course));
 	}
 }

@@ -13,7 +13,7 @@ public class CourseServiceImpl extends CommonServiceImpl<Course, CourseRepositor
 	@Override
 	@Transactional(readOnly = true)
 	public Course findCourseByStudentId(Long id) {
-		return studentDao.findCourseByStudentId(id);
+		return repository.findCourseByStudentId(id);
 	}
 
 }

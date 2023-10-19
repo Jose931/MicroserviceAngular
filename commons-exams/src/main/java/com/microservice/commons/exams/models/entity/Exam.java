@@ -13,11 +13,15 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="exams")
@@ -27,6 +31,8 @@ public class Exam {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotEmpty
+	@Size(min = 4, max = 30)
 	private String name;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -36,6 +42,10 @@ public class Exam {
 	@JsonIgnoreProperties(value = {"exam"}, allowSetters = true)
 	@OneToMany(mappedBy = "exam",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Question> questions;
+	
+	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Subject subject;
 	
 	public Exam() {
 		this.questions = new ArrayList<>();
@@ -87,4 +97,29 @@ public class Exam {
 		this.questions.remove(question);
 		question.setExam(null);
 	}
+	
+	public Subject getSubject() {
+		return subject;
+	}
+
+	public void setSubject(Subject subject) {
+		this.subject = subject;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		if(this == obj) {
+			return true;
+		}
+		
+		if(!(obj instanceof Exam)) {
+			return false;
+		}
+		
+		Exam s = (Exam) obj;
+		
+		return this.id != null && this.id.equals(s.getId());
+	}
+	
 }

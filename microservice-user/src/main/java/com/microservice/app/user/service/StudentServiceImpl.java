@@ -15,7 +15,7 @@ public class StudentServiceImpl extends CommonServiceImpl<Student, StudentRespos
 	@Override
 	@Transactional(readOnly = true)
 	public List<Student> findByNameOrSecondName(String term) {
-		return studentDao.findByNameOrSecondName(term);
+		return repository.findByNameOrSecondName(term);
 	}
 
 	

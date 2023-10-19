@@ -20,6 +20,7 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="course")
@@ -28,6 +29,8 @@ public class Course {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotEmpty
 	private String name;
 	
 	@Column(name = "create_at")
@@ -109,21 +112,6 @@ public class Course {
 		this.exams.remove(exam);
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-
-		if(this == obj) {
-			return true;
-		}
-		
-		if(!(obj instanceof Exam)) {
-			return false;
-		}
-		
-		Exam s = (Exam) obj;
-		
-		return this.id != null && this.id.equals(s.getId());
-	}
 	
 	
 
