@@ -2,11 +2,14 @@ package com.microservice.commons.users.models.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -38,6 +41,10 @@ public class Student {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createAt;
 	
+	@Lob()
+	@JsonIgnore
+	private byte[] photo;
+	
 	@PrePersist
 	public void prePersist() {
 		this.createAt = new Date();
@@ -49,6 +56,10 @@ public class Student {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public Integer getPhotoHashCode() {
+		return (this.photo != null) ? this.photo.hashCode(): null;
 	}
 
 	public String getName() {
@@ -81,6 +92,14 @@ public class Student {
 
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
+	}
+
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(byte[] fhoto) {
+		this.photo = fhoto;
 	}
 
 	@Override

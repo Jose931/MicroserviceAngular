@@ -3,18 +3,21 @@ package com.microservice.commons.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
-public class CommonServiceImpl<E, R extends CrudRepository<E, Long>> implements ICommonService<E>{
+import com.microservice.commons.repository.CrudAndPagingAndSortingRepository;
+
+public class CommonServiceImpl<E, R extends CrudAndPagingAndSortingRepository<E, Long>> implements ICommonService<E>{
 	
 	@Autowired
 	protected R repository;
 
 	@Override
 	@Transactional(readOnly = true)
-	public Iterable<E> findAll() {
-		return repository.findAll();
+	public Page<E> findAll(Pageable pageable) {
+		return repository.findAll(pageable);
 	}
 
 	@Override
@@ -34,6 +37,11 @@ public class CommonServiceImpl<E, R extends CrudRepository<E, Long>> implements 
 	public void deleteById(Long id) {
 		repository.deleteById(id);
 		
+	}
+
+	@Override
+	public Iterable<E> findAll() {
+		return repository.findAll();
 	}
 
 }
