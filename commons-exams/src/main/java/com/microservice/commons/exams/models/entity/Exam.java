@@ -19,6 +19,7 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -46,6 +47,9 @@ public class Exam {
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Subject subject;
+	
+	@Transient
+	private boolean answered;
 	
 	public Exam() {
 		this.questions = new ArrayList<>();
@@ -104,6 +108,14 @@ public class Exam {
 
 	public void setSubject(Subject subject) {
 		this.subject = subject;
+	}
+
+	public boolean isAnswered() {
+		return answered;
+	}
+
+	public void setAnswered(boolean answered) {
+		this.answered = answered;
 	}
 
 	@Override

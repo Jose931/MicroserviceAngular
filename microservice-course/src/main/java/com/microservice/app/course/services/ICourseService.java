@@ -5,4 +5,6 @@ import com.microservice.commons.service.ICommonService;
 
 public interface ICourseService extends ICommonService<Course>{
 	public Course findCourseByStudentId(Long id);
+	
+	public Iterable<Long> getIdExamsWithAnswerStudent(Long studentId);
 }
