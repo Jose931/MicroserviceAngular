@@ -1,7 +1,6 @@
 import { Component} from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { UsersComponent } from './components/users/users.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
 @Component({
@@ -11,7 +10,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     CommonModule,
     RouterOutlet,
     RouterLink,
-    UsersComponent,
     NavbarComponent
   ],
   templateUrl: './app.component.html',
