@@ -19,6 +19,7 @@
                     <td>{{student.secondName}}</td>
                     <td>{{student.email}}</td>
                     <td>{{student.createAt | date: 'yyyy/MM/dd'}}</td>
+                    <td><button class="btn btn-secondary btn-sm" [routerLink]="['/students/form', student.id]">Editar</button></td>
                 </tr>
             </tbody>
         </table>
