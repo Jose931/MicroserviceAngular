@@ -1,0 +1,26 @@
+<div class="card bg-light mb-3 mt-3">
+    <div class="card-header">{{titulo}}</div>
+    <div class="card-body">
+        <button class="btn btn-secondary my-2" routerLink="/students">Volver</button>
+        <form>
+            <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" name="name" class="form-control"
+                [(ngModel)]="student.name">
+            </div>
+            <div class="form-group">
+                <label for="secondName">Apellido</label>
+                <input type="text" name="secondName" class="form-control"
+                [(ngModel)]="student.secondName">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" name="email" class="form-control"
+                [(ngModel)]="student.email">
+            </div>
+            <div class="form-group mt-2">
+               <button type="button" class="btn btn-primary" (click)="create()">Crear</button>
+            </div>
+        </form>
+    </div>
+</div>
