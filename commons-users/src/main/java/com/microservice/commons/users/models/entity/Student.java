@@ -41,7 +41,7 @@ public class Student {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createAt;
 	
-	@Lob()
+	@Lob
 	@JsonIgnore
 	private byte[] photo;
 	
