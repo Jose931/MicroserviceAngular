@@ -25,6 +25,15 @@
                 </tr>
             </tbody>
         </table>
+        <mat-paginator [length]= "totalRecords"
+              [pageSize]= "totalPerPage"
+              [pageIndex]= "actualPage"
+              [pageSizeOptions]= "pageSizeOptions"
+              (page) = paginate($event)
+              showFirstLastButtons
+              class="float-start mx-2">
+        </mat-paginator>
+
     </div>
 </div>
 
