@@ -23,6 +23,7 @@ export class UsersFormComponent implements OnInit{
   titulo = "Inserta un alumnno";
   student: Student = new Student();
   error: any;
+  private photoSelected: File;
 
   constructor(private service: StudentService, 
     private router: Router,
@@ -32,7 +33,6 @@ export class UsersFormComponent implements OnInit{
     this.route.paramMap.subscribe(params => {
       const id: number = +params.get('id');
       if(id){
-        
         this.service.show(id).subscribe( student => {
           this.student = student;
           this.titulo = `Actualizando ${student.name}`;
@@ -42,32 +42,72 @@ export class UsersFormComponent implements OnInit{
   }
 
   public create(): void{
-    this.service.create(this.student).subscribe({
-      next: (student) => {
-        console.log(student);
-        Swal.fire('Nuevo:', `Alumno creado con exito ${student.name}`, 'success');
-        this.router.navigate(['/students']);
-      },
-      error: err => {
-        if(err.status === 400){
-          this.error = err.error;
-          console.log(this.error);
-        }
-    }});
+
+    if(this.photoSelected == null){
+      this.service.create(this.student).subscribe({
+        next: (student) => {
+          console.log(student);
+          Swal.fire('Nuevo:', `Alumno creado con exito ${student.name}`, 'success');
+          this.router.navigate(['/students']);
+        },
+        error: err => {
+          if(err.status === 400){
+            this.error = err.error;
+            console.log(this.error);
+          }
+      }});
+    }else {
+      this.service.createWithPhoto(this.student, this.photoSelected).subscribe({
+        next: (student) => {
+          console.log(student);
+          Swal.fire('Nuevo:', `Alumno creado con exito ${student.name}`, 'success');
+          this.router.navigate(['/students']);
+        },
+        error: err => {
+          if(err.status === 400){
+            this.error = err.error;
+            console.log(this.error);
+          }
+      }});
+    }
   }
 
   public edit(): void{
-    this.service.edit(this.student).subscribe({
-      next: (student) => {
-        console.log(student);
-        Swal.fire('Modificado:', `Alumno modificado con exito ${student.name}`, 'success');
-        this.router.navigate(['/students']);
-      },
-      error: err => {
-        if(err.status === 400){
-          this.error = err.error;
-          console.log(this.error);
-        }
-    }});
+
+    if(this.photoSelected == null){
+      this.service.edit(this.student).subscribe({
+        next: (student) => {
+          console.log(student);
+          Swal.fire('Modificado:', `Alumno modificado con exito ${student.name}`, 'success');
+          this.router.navigate(['/students']);
+        },
+        error: err => {
+          if(err.status === 400){
+            this.error = err.error;
+            console.log(this.error);
+          }
+      }});
+    }else{
+      this.service.editWithPhoto(this.student, this.photoSelected).subscribe({
+        next: (student) => {
+          console.info(this.photoSelected);
+          console.log(student);
+          Swal.fire('Modificado:', `Alumno modificado con exito ${student.name}`, 'success');
+          this.router.navigate(['/students']);
+        },
+        error: err => {
+          if(err.status === 400){
+            this.error = err.error;
+            console.log(this.error);
+          }
+      }});
+    }
+
+    
+  }
+
+  public selectPhoto(event): void{
+    this.photoSelected = event.target.files[0];
+    console.info(this.photoSelected);
   }
 }

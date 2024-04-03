@@ -21,7 +21,7 @@ import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/p
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 })
-export class UsersComponent implements OnInit{
+export class UsersComponent implements OnInit {
   
   titulo = 'Listado de Alumnos';
   students: Student[];
@@ -36,11 +36,12 @@ export class UsersComponent implements OnInit{
     this.calculateRange();
   }
 
-@ViewChild(MatPaginator) paginator: MatPaginator;
+@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   public paginate(event: PageEvent): void{
     this.actualPage = event.pageIndex;
     this.totalPerPage = event.pageSize;
+    this.paginator._intl.itemsPerPageLabel = '';
     this.calculateRange();
     
   }

@@ -28,6 +28,12 @@
                 </div>
             </div>
             <div class="form-group mt-2">
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Foto</label>
+                    <input (change)="selectPhoto($event)" class="form-control" type="file" id="formFile">
+                 </div>
+            </div>
+            <div class="form-group mt-2">
                <button type="button" class="btn btn-primary" (click)="student.id? edit(): create()">{{student.id ? 'Editar' : 'Crear'}}</button>
             </div>
         </form>
