@@ -1,7 +1,8 @@
 import { Subject } from "./subject";
 import { Question } from "./question";
+import { Generic } from "./generic";
 
-export class Exam {
+export class Exam implements Generic{
 
     id: number;
     name: string;
