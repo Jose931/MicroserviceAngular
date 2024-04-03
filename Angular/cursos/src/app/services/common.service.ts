@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Generic } from '../models/generic';
+import { Directive, Injectable } from '@angular/core';
 
+@Directive()
 export abstract class CommonService <E extends Generic>{
 
   protected baseEndpoint: string;
