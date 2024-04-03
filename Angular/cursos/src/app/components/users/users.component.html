@@ -2,7 +2,8 @@
     <div class="card-header">{{titulo}}</div>
     <div class="card-body">
         <button class="btn btn-primary my-2" routerLink="/students/form">Create</button>
-        <table class="table table-hover table-striped">
+        <div class="alert alert-info" *ngIf="students?.length==0">No hay alumnos en la base de datos</div>
+        <table class="table table-hover table-striped" *ngIf="students?.length>0">
             <thead>
                 <tr>
                    <th>id</th>
@@ -20,6 +21,7 @@
                     <td>{{student.email}}</td>
                     <td>{{student.createAt | date: 'yyyy/MM/dd'}}</td>
                     <td><button class="btn btn-secondary btn-sm" [routerLink]="['/students/form', student.id]">Editar</button></td>
+                    <td><button class="btn btn-danger btn-sm" (click)="delete(student)">Eliminar</button></td>
                 </tr>
             </tbody>
         </table>

@@ -4,6 +4,7 @@ import { Student } from '../../models/student';
 import { StudentService } from '../../services/student.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-users-form',
@@ -44,7 +45,7 @@ export class UsersFormComponent implements OnInit{
     this.service.create(this.student).subscribe({
       next: (student) => {
         console.log(student);
-        alert(`Alumno creado con exito ${student.name}`);
+        Swal.fire('Nuevo:', `Alumno creado con exito ${student.name}`, 'success');
         this.router.navigate(['/students']);
       },
       error: err => {
@@ -59,7 +60,7 @@ export class UsersFormComponent implements OnInit{
     this.service.edit(this.student).subscribe({
       next: (student) => {
         console.log(student);
-        alert(`Alumno ${student.name} actualizado con exito`);
+        Swal.fire('Modificado:', `Alumno modificado con exito ${student.name}`, 'success');
         this.router.navigate(['/students']);
       },
       error: err => {

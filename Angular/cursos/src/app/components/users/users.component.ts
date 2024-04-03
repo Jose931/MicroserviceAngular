@@ -5,6 +5,7 @@ import { Student } from '../../models/student';
 import { CommonModule } from '@angular/common';
 import { UsersFormComponent } from './users-form.component';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-users',
@@ -22,5 +23,25 @@ export class UsersComponent implements OnInit{
   
   ngOnInit(): void {
     this.service.list().subscribe(students => this.students = students);
+  }
+
+  public delete(student: Student): void{
+
+    Swal.fire({
+      title: "Cuidado!",
+      text: `¿Seguro que desas eliminar a ${student.name}?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, eliminar!"
+    }).then((result) => {
+      if(result.value){
+        this.service.delete(student.id).subscribe(() => {
+          this.service.list().subscribe(students => this.students = students);
+          Swal.fire('Eliminado', `Alumno ${student.name} eliminado con exito`, 'success');
+        });
+      }
+    }); 
   }
 }
