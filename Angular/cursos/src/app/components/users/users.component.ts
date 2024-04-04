@@ -7,6 +7,7 @@ import { UsersFormComponent } from './users-form.component';
 import { RouterLink} from '@angular/router';
 import Swal from 'sweetalert2';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { BASE_ENDPOINT } from '../../app';
 
 @Component({
   selector: 'app-users',
@@ -29,6 +30,7 @@ export class UsersComponent implements OnInit {
   actualPage = 0;
   totalPerPage = 3;
   pageSizeOptions= [3, 6, 9, 12];
+  baseEndpoint = BASE_ENDPOINT + "/students";
 
   constructor(private service: StudentService){}
   
