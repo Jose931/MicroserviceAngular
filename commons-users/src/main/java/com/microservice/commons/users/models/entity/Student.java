@@ -98,8 +98,8 @@ public class Student {
 		return photo;
 	}
 
-	public void setPhoto(byte[] fhoto) {
-		this.photo = fhoto;
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
 	}
 
 	@Override
