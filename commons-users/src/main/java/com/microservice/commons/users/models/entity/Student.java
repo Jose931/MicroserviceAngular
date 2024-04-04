@@ -43,6 +43,7 @@ public class Student {
 	
 	@Lob
 	@JsonIgnore
+	@Column(columnDefinition = "LONGBLOB")
 	private byte[] photo;
 	
 	@PrePersist

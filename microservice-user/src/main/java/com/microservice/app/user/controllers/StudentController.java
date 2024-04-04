@@ -70,14 +70,14 @@ public class StudentController extends CommonController<Student, IStudentService
 	}
 
 	@PostMapping("/create-with-photo")
-	public ResponseEntity<?> createWithPhoto(@Valid Student entity, BindingResult result, 
+	public ResponseEntity<?> createWithPhoto(@Valid Student student, BindingResult result, 
 			@RequestParam MultipartFile archive) throws IOException {
 		
 		if(!archive.isEmpty()) {
-			entity.setPhoto(archive.getBytes());
+			student.setPhoto(archive.getBytes());
 		}
 		
-		return super.create(entity, result);
+		return super.create(student, result);
 	}
 	
 	@PutMapping("/edit-with-photo/{id}")
@@ -100,7 +100,7 @@ public class StudentController extends CommonController<Student, IStudentService
 		myStudent.setEmail(student.getEmail());
 		
 		if(!archive.isEmpty()) {
-			student.setPhoto(archive.getBytes());
+			myStudent.setPhoto(archive.getBytes());
 		}
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(myStudent));

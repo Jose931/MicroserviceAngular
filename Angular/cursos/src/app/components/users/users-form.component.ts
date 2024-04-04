@@ -90,7 +90,6 @@ export class UsersFormComponent implements OnInit{
     }else{
       this.service.editWithPhoto(this.student, this.photoSelected).subscribe({
         next: (student) => {
-          console.info(this.photoSelected);
           console.log(student);
           Swal.fire('Modificado:', `Alumno modificado con exito ${student.name}`, 'success');
           this.router.navigate(['/students']);
