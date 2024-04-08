@@ -25,11 +25,11 @@ public class Subject {
 	
 	private String name;
 	
-	@JsonIgnoreProperties(value = {"specificSubject"})
+	@JsonIgnoreProperties(value = {"specificSubject", "handler", "hibernateLazyInitializer"})
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Subject generalSubject;
 	
-	@JsonIgnoreProperties(value = {"generalSubject"}, allowSetters = true)
+	@JsonIgnoreProperties(value = {"generalSubject", "handler", "hibernateLazyInitializer"}, allowSetters = true)
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "generalSubject", cascade = CascadeType.ALL)
 	private List<Subject> specificSubject;
 	

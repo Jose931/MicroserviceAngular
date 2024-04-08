@@ -44,9 +44,15 @@ public class Exam {
 	@OneToMany(mappedBy = "exam",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Question> questions;
 	
+	@JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer"})
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Subject subject;
+	private Subject generalSubject;
+	
+	@JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer"})
+	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Subject specificSubject;
 	
 	@Transient
 	private boolean answered;
@@ -101,13 +107,21 @@ public class Exam {
 		this.questions.remove(question);
 		question.setExam(null);
 	}
-	
-	public Subject getSubject() {
-		return subject;
+
+	public Subject getGeneralSubject() {
+		return generalSubject;
 	}
 
-	public void setSubject(Subject subject) {
-		this.subject = subject;
+	public void setGeneralSubject(Subject generalSubject) {
+		this.generalSubject = generalSubject;
+	}
+
+	public Subject getSpecificSubject() {
+		return specificSubject;
+	}
+
+	public void setSpecificSubject(Subject specificSubject) {
+		this.specificSubject = specificSubject;
 	}
 
 	public boolean isAnswered() {

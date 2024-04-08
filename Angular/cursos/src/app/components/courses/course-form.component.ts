@@ -9,7 +9,12 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-course-form',
   standalone: true,
-  imports: [RouterLink, RouterOutlet, CommonModule, FormsModule],
+  imports: [
+    RouterLink, 
+    RouterOutlet, 
+    CommonModule, 
+    FormsModule
+  ],
   templateUrl: './course-form.component.html',
   styleUrl: './course-form.component.css',
 })

@@ -37,7 +37,7 @@ public class Student {
 	@Email
 	private String email;
 	
-	@Column(name = "create_at")
+	@Column(name = "create_at", unique = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createAt;
 	

@@ -1,4 +1,3 @@
-ALTER TABLE db_microservice_exams.students MODIFY COLUMN photo LONGBLOB NULL;
 INSERT INTO db_microservice_exams.students (create_at,email,name,photo,second_name) VALUES
 	 ('2024-04-02 12:28:57.176000','jose@email.com','Jose Luis',NULL,'Aresti'),
 	 ('2024-04-02 12:31:16.654000','carlos@email.com','Carlos',NULL,'Castrati'),

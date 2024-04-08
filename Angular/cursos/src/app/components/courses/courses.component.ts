@@ -6,6 +6,8 @@ import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/p
 import { AppComponent } from '../../app.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { CourseFormComponent } from './course-form.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-courses',
@@ -14,6 +16,7 @@ import { RouterLink } from '@angular/router';
     AppComponent,
     CommonModule,
     RouterLink,
+    CourseFormComponent,
     MatPaginatorModule
   ],
   templateUrl: './courses.component.html',
@@ -55,5 +58,25 @@ export class CoursesComponent implements OnInit{
       this.totalRecords = p.totalElements as number;
       this.paginator._intl.itemsPerPageLabel = 'Registros por página';
     });
+  }
+
+  public delete(course: Course): void{
+
+    Swal.fire({
+      title: "Cuidado!",
+      text: `¿Seguro que desas eliminar a ${course.name}?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, eliminar!"
+    }).then((result) => {
+      if(result.value){
+        this.service.delete(course.id).subscribe(() => {
+          this.calculateRange();
+          Swal.fire('Eliminado', `Alumno ${course.name} eliminado con exito`, 'success');
+        });
+      }
+    }); 
   }
 }
