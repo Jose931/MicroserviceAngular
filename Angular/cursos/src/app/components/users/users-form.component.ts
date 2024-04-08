@@ -108,5 +108,12 @@ export class UsersFormComponent implements OnInit{
   public selectPhoto(event): void{
     this.photoSelected = event.target.files[0];
     console.info(this.photoSelected);
+
+    if(this.photoSelected.type.indexOf('image') < 0){
+      this.photoSelected == null;
+      Swal.fire('Error al seleccionar la foto:',
+       'El archivo debe ser del tipo imagen',
+       'error');
+    }
   }
 }

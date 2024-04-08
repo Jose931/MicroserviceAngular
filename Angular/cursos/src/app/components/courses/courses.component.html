@@ -1,1 +1,33 @@
-<p>courses works!</p>
+<div class="card bg-light mb-3 mt-3">
+    <div class="card-header">{{titulo}}</div>
+    <div class="card-body">
+        <button class="btn btn-primary my-2" routerLink="/courses/form">Create</button>
+        <div class="alert alert-info" *ngIf="courses?.length==0">No hay cursos en la base de datos</div>
+        <table class="table table-hover table-striped" *ngIf="courses?.length>0">
+            <thead>
+                <tr>
+                   <th>id</th>
+                   <th>Name</th>
+                   <th>Create At</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let course of courses">
+                    <td>{{course.id}}</td>
+                    <td>{{course.name}}</td>
+                    <td>{{course.createAt | date: 'yyyy/MM/dd'}}</td>
+                    <td><button class="btn btn-secondary btn-sm" [routerLink]="['/courses/form', course.id]">Editar</button></td>
+                    <td><button class="btn btn-danger btn-sm" (click)="delete(course)">Eliminar</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <mat-paginator [length]= "totalRecords"
+              [pageSize]= "totalPerPage"
+              [pageIndex]= "actualPage"
+              [pageSizeOptions]= "pageSizeOptions"
+              (page) = paginate($event)
+              showFirstLastButtons
+              class="float-start mx-2">
+        </mat-paginator>
+    </div>
+</div>

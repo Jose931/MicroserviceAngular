@@ -28,8 +28,8 @@ export class UsersComponent implements OnInit {
   students: Student[];
   totalRecords = 0;
   actualPage = 0;
-  totalPerPage = 3;
-  pageSizeOptions= [3, 6, 9, 12];
+  totalPerPage = 6;
+  pageSizeOptions= [6, 12, 15, 20];
   baseEndpoint = BASE_ENDPOINT + "/students";
 
   constructor(private service: StudentService){}
