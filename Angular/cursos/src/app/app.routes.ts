@@ -5,6 +5,7 @@ import { ExamsComponent } from './components/exams/exams.component';
 import { UsersFormComponent } from './components/users/users-form.component';
 import { CourseFormComponent } from './components/courses/course-form.component';
 import { ExamFormComponent } from './components/exams/exam-form.component';
+import { AddStudentsComponent } from './components/courses/add-students.component';
 
 export const routes: Routes = [
     {path: 'students', component:UsersComponent},
@@ -16,5 +17,6 @@ export const routes: Routes = [
     {path: 'exams', component:ExamsComponent},
     {path: 'exam/form', component:ExamFormComponent},
     {path: 'exam/form/:id', component:ExamFormComponent},
+    {path: 'courses/assign-students/:id', component:AddStudentsComponent},
     {path: '**', redirectTo: 'students', pathMatch: 'full'}
 ];

@@ -37,5 +37,9 @@ export class StudentService extends CommonService<Student>{
     
     return this.http.put<Student>(`${this.baseEndpoint}/edit-with-photo/${student.id}`, formData);
   }
+
+  public findByTerm(name: string): Observable<Student[]>{
+    return this.http.get<Student[]>(`${this.baseEndpoint}/find/${name}`);
+  }
   
 }

@@ -3,6 +3,10 @@ import { AppComponent } from '../../app.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatButtonModule} from '@angular/material/button';
 import { Exam } from '../../models/exam';
 import { BASE_ENDPOINT } from '../../app';
 import { ExamService } from '../../services/exam.service';
@@ -17,7 +21,11 @@ import Swal from 'sweetalert2';
     CommonModule, 
     RouterLink, 
     ExamFormComponent,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatInputModule,
+    MatTableModule
   ],
   templateUrl: './exams.component.html',
   styleUrl: './exams.component.css'

@@ -3,6 +3,10 @@ import { CourseService } from '../../services/course.service';
 import { Course } from '../../models/course';
 import { BASE_ENDPOINT } from '../../app';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatButtonModule} from '@angular/material/button';
 import { AppComponent } from '../../app.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -17,7 +21,11 @@ import Swal from 'sweetalert2';
     CommonModule,
     RouterLink,
     CourseFormComponent,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatInputModule,
+    MatTableModule
   ],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.css'

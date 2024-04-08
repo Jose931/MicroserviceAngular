@@ -1,0 +1,33 @@
+<mat-form-field class="mx-3">
+    <input matInput placeholder="Buscar Alumnos" (keyup)="filterName($event.target.value)">
+</mat-form-field>
+
+<table mat-table [dataSource]="assingStudents" class="mat-elevation-z8">
+    <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox 
+            (change)="$event?selecOrDeselecttAll(): null"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let student">
+            <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="$event? selection.toggle(student): null"
+            [checked]="selection.isSelected(student)">
+            </mat-checkbox>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let student"> {{student.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="secondName">
+        <th mat-header-cell *matHeaderCellDef>Apellido</th>
+        <td mat-cell *matCellDef="let student"> {{student.secondName}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="showColumns"></tr>
+    <tr mat-row *matRowDef="let student; columns: showColumns;" (click)="slection.toggle(student)"></tr>
+</table>
+<button mat-raised-button class="m-4" (click)="assing()" [disabled]="!selection.hasValue()">Asignar</button>
