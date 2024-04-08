@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import {MatCardModule} from '@angular/material/card';
 import { CourseService } from '../../services/course.service';
 import { StudentService } from '../../services/student.service';
 import { Student } from '../../models/student';
@@ -25,7 +26,9 @@ import Swal from 'sweetalert2';
     MatCheckboxModule,
     MatInputModule,
     MatTableModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatCardModule
   ],
   templateUrl: './add-students.component.html',
   styleUrl: './add-students.component.css'
