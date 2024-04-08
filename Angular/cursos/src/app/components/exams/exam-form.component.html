@@ -13,7 +13,9 @@
             </div>
             <div class="form-group mt-2">
                 <label for="generalSubject">Asignatura</label>
-                <select (change)="takeSpecificSubjects()" [(ngModel)]="exam.generalSubject" name="generalSubject" id="generalSubject" class="form-control">
+                <select (change)="takeSpecificSubjects()"
+                [compareWith]="compareSubject" 
+                [(ngModel)]="exam.generalSubject" name="generalSubject" id="generalSubject" class="form-control">
                     <option [ngValue]="undefined">---Seleccionar una asignatura---</option>
                     <option *ngFor="let subject of generalSubjects" [(ngValue)]="subject">{{subject.name}}</option>
                 </select>
@@ -23,7 +25,9 @@
             </div>
             <div class="form-group mt-2">
                 <label for="specificSubject">Asignatura especifica</label>
-                <select [(ngModel)]="exam.specificSubject" name="specificSubject" id="specificSubject" class="form-control">
+                <select [(ngModel)]="exam.specificSubject" 
+                [compareWith]="compareSubject"
+                name="specificSubject" id="specificSubject" class="form-control">
                     <option [ngValue]="undefined">---Seleccionar una asignatura---</option>
                     <option *ngFor="let subject of specificSubjects" [(ngValue)]="subject">{{subject.name}}</option>
                 </select>

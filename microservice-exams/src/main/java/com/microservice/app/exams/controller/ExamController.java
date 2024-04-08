@@ -41,6 +41,8 @@ public class ExamController extends CommonController<Exam, IExamService> {
 			.forEach(ex::removeQuestion);
 
 		ex.setQuestions(exam.getQuestions());
+		ex.setSpecificSubject(exam.getSpecificSubject());
+		ex.setGeneralSubject(exam.getGeneralSubject());
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(ex));
 	}

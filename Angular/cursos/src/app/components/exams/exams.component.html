@@ -8,6 +8,7 @@
                 <tr>
                    <th>id</th>
                    <th>Name</th>
+                   <th>Subjects</th>
                    <th>Create At</th> 
                 </tr>
             </thead>
@@ -15,8 +16,9 @@
                 <tr *ngFor="let exam of exams">
                     <td>{{exam.id}}</td>
                     <td>{{exam.name}}</td>
+                    <td>{{exam.specificSubject?.generalSubject.name}} -> {{exam.specificSubject?.name}}</td>
                     <td>{{exam.createAt | date: 'yyyy/MM/dd'}}</td>
-                    <td><button class="btn btn-secondary btn-sm" [routerLink]="['/exams/form', exam.id]">Editar</button></td>
+                    <td><button class="btn btn-secondary btn-sm" [routerLink]="['/exam/form', exam.id]">Editar</button></td>
                     <td><button class="btn btn-danger btn-sm" (click)="delete(exam)">Eliminar</button></td>
                 </tr>
             </tbody>
