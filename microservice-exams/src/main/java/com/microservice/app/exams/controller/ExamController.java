@@ -1,6 +1,7 @@
 package com.microservice.app.exams.controller;
 
 import java.util.Optional;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.microservice.app.exams.service.IExamService;
 import com.microservice.commons.controllers.CommonController;
 import com.microservice.commons.exams.models.entity.Exam;
+import com.microservice.commons.exams.models.entity.Question;
 
 import jakarta.validation.Valid;
 
@@ -36,9 +38,12 @@ public class ExamController extends CommonController<Exam, IExamService> {
 		Exam ex = e.get();
 		ex.setName(exam.getName());
 
-		ex.getQuestions().stream()
+		List<Question> questionRemove = ex.getQuestions().stream()
 			.filter(q -> !exam.getQuestions().contains(q))
-			.forEach(ex::removeQuestion);
+			.toList();
+			
+			
+		questionRemove.forEach(ex::removeQuestion);
 
 		ex.setQuestions(exam.getQuestions());
 		ex.setSpecificSubject(exam.getSpecificSubject());
