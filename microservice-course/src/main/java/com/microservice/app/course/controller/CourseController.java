@@ -127,7 +127,7 @@ public class CourseController extends CommonController<Course, ICourseService> {
 		return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(course));
 	}
 
-	@PutMapping("/{id}/delte-exam")
+	@PutMapping("/{id}/delete-exam")
 	public ResponseEntity<?> deleteExam(@RequestBody Exam exam, @PathVariable Long id) {
 
 		Optional<Course> c = this.service.findById(id);

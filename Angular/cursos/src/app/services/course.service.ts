@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { BASE_ENDPOINT } from '../app';
 import { Student } from '../models/student';
 import { Observable } from 'rxjs';
+import { Exam } from '../models/exam';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,19 @@ export class CourseService extends CommonService<Course>{
     return this.http.put<Course>(`${this.baseEndpoint}/${course.id}/delte-student`,
       student, {headers: this.head});
 
+   }
+
+   public assignExams(course: Course, exams: Exam[]): Observable<Course>{
+    return this.http.put<Course>(`${this.baseEndpoint}/${course.id}/assign-exam`,
+      exams,
+      {headers: this.head}
+    );
+   }
+
+   public deleteExam(course: Course, exam: Exam): Observable<Course>{
+    return this.http.put<Course>(`${this.baseEndpoint}/${course.id}/delete-exam`,
+      exam,
+      {headers: this.head}
+    );
    }
 }

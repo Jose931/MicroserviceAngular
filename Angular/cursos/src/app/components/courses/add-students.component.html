@@ -12,7 +12,7 @@
                     <input matInput placeholder="Buscar Alumnos" (keyup)="filterName($event.target.value)">
                 </mat-form-field>
 
-                <table mat-table [dataSource]="assingStudents" class="mat-elevation-z8 mx-3" style="width: 75%;">
+                <table mat-table [dataSource]="assingStudents" class="mat-elevation-z8 mx-3" style="width: 50%;">
 
                     <ng-container matColumnDef="select">
                         <th mat-header-cell *matHeaderCellDef>
@@ -47,7 +47,7 @@
                     [disabled]="!selection.hasValue()">Asignar</button>
             </mat-tab>
             <mat-tab label="Alumnos({{students.length}})">
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mx-3" style="width: 75%;">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mx-3" style="width: 50%;">
 
                     <ng-container matColumnDef="id">
                         <th mat-header-cell *matHeaderCellDef>Id</th>

@@ -20,4 +20,8 @@ export class ExamService extends CommonService<Exam>{
    public findAllSubjects(): Observable<Subject[]>{
     return this.http.get<Subject[]>(`${this.baseEndpoint}/subjects`);
    }
+
+   public nameFilter(name: string): Observable<Exam[]>{
+    return this.http.get<Exam[]>(`${this.baseEndpoint}/filter/${name}`);
+   }
 }

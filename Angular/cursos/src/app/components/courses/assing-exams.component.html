@@ -1,1 +1,87 @@
-<p>assing-exams works!</p>
+<mat-card>
+    <mat-card-header *ngIf="course">
+        <mat-card-title>
+            Examenes del curso {{course.name}}
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <mat-tab-group dynamicHeight [(selectedIndex)]="tabIndex">
+            <mat-tab label="Asignar Examenes">
+                <mat-form-field>
+                    <input matInput placeholder="Añadir examen" [formControl]="autocompleteControl"
+                        [matAutocomplete]="autoComplete">
+
+                    <mat-autocomplete #autoComplete="matAutocomplete" [displayWith]="showName"
+                        (optionSelected)="selectExam($event)">
+                        <mat-option *ngFor="let exam of examsFilters" [value]="exam">
+                            {{exam.name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <table mat-table [dataSource]="examsSelected" class="mat-elevation-z8 m-3" style="width: 75%;">
+
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                        <td mat-cell *matCellDef="let exam"> {{exam.name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="specificSubject">
+                        <th mat-header-cell *matHeaderCellDef>Asignatura</th>
+                        <td mat-cell *matCellDef="let exam">{{exam.generalSubject.name}} ->
+                            {{exam.specificSubject.name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="delete">
+                        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+                        <td mat-cell *matCellDef="let exam">
+                            <button mat-mini-fab color="warn" (click)="deleteSelected(exam)">x</button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="showColumns"></tr>
+                    <tr mat-row *matRowDef="let student; columns: showColumns;">
+                    </tr>
+                </table>
+                <button mat-raised-button color="primary" class="m-4" (click)="assign()"
+                    [disabled]="examsSelected.length === 0"> Asignar</button>
+            </mat-tab>
+            <mat-tab label="Examenes del curso {{exams.length}}">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mx-3" style="width: 50%;">
+
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef>Id</th>
+                        <td mat-cell *matCellDef="let exam"> {{exam.id}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                        <td mat-cell *matCellDef="let exam"> {{exam.name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="specificSubject">
+                        <th mat-header-cell *matHeaderCellDef>Asignatura</th>
+                        <td mat-cell *matCellDef="let exam"> {{exam.generalSubject.name}} ->
+                            {{exam.specificSubject.name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="delete">
+                        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+                        <td mat-cell *matCellDef="let exam">
+                            <button mat-mini-fab color="warn" (click)="deleteExamCourse(exam)">x</button> 
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="showColumnsExams"></tr>
+                    <tr mat-row *matRowDef="let exma; columns: showColumnsExams;">
+                    </tr>
+                </table>
+                <mat-paginator 
+                    [pageSizeOptions]="pageSizeOptions" 
+                    showFirstLastButtons
+                    class="float-start mx-2">
+                </mat-paginator>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+</mat-card>
