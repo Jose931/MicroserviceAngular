@@ -22,4 +22,11 @@ export class CourseService extends CommonService<Course>{
     students,
     {headers: this.head});
    }
+
+   public deleteStudent(course: Course, student: Student): Observable<Course>{
+
+    return this.http.put<Course>(`${this.baseEndpoint}/${course.id}/delte-student`,
+      student, {headers: this.head});
+
+   }
 }
