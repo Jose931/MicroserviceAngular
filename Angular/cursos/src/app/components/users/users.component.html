@@ -8,10 +8,11 @@
                 <tr>
                    <th>id</th>
                    <th>Foto</th>
-                   <th>Name</th>
-                   <th>Second Name</th>
+                   <th>Nombre</th>
+                   <th>Apellido</th>
                    <th>Email</th>
                    <th>Create At</th> 
+                   <th>Examenes</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +30,7 @@
                     <td>{{student.secondName}}</td>
                     <td>{{student.email}}</td>
                     <td>{{student.createAt | date: 'yyyy/MM/dd'}}</td>
+                    <td><button class="btn btn-primary btn-sm" [routerLink]="['/students/answer-exam/', student.id]">Responder</button></td>
                     <td><button class="btn btn-secondary btn-sm" [routerLink]="['/students/form', student.id]">Editar</button></td>
                     <td><button class="btn btn-danger btn-sm" (click)="delete(student)">Eliminar</button></td>
                 </tr>

@@ -32,7 +32,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatTabsModule,
+    MatTabsModule
   ],
   templateUrl: './add-students.component.html',
   styleUrl: './add-students.component.css',

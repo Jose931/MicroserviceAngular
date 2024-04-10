@@ -37,7 +37,7 @@ import Swal from 'sweetalert2';
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatTabsModule,
+    MatTabsModule
   ],
   templateUrl: './assing-exams.component.html',
   styleUrl: './assing-exams.component.css',

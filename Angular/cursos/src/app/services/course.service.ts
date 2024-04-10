@@ -44,4 +44,8 @@ export class CourseService extends CommonService<Course>{
       {headers: this.head}
     );
    }
+
+   public getCourseByStudentId(student: Student): Observable<Course>{
+    return this.http.get<Course>(`${this.baseEndpoint}/student/${student.id}`);
+   }
 }

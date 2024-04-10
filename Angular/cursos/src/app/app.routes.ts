@@ -7,18 +7,20 @@ import { CourseFormComponent } from './components/courses/course-form.component'
 import { ExamFormComponent } from './components/exams/exam-form.component';
 import { AddStudentsComponent } from './components/courses/add-students.component';
 import { AssingExamsComponent } from './components/courses/assing-exams.component';
+import { AnswerExamComponent } from './components/users/answer-exam.component';
 
 export const routes: Routes = [
     {path: 'students', component:UsersComponent},
     {path: 'students/form', component:UsersFormComponent},
     {path: 'students/form/:id', component:UsersFormComponent},
+    {path: 'students/answer-exam/:id', component:AnswerExamComponent},
     {path: 'courses', component:CoursesComponent},
     {path: 'courses/form', component:CourseFormComponent},
     {path: 'courses/form/:id', component:CourseFormComponent},
+    {path: 'courses/assign-students/:id', component:AddStudentsComponent},
+    {path: 'courses/assign-exam/:id', component:AssingExamsComponent},
     {path: 'exams', component:ExamsComponent},
     {path: 'exam/form', component:ExamFormComponent},
     {path: 'exam/form/:id', component:ExamFormComponent},
-    {path: 'courses/assign-students/:id', component:AddStudentsComponent},
-    {path: 'courses/assign-exam/:id', component:AssingExamsComponent},
     {path: '**', redirectTo: 'students', pathMatch: 'full'}
 ];

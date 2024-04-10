@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Curso {{course.name}}</h1>
+<div mat-dialog-content>
+    <p>Examen {{exam.name}}</p>
+    <mat-expansion-panel *ngFor="let question of exam.questions">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{question.text}}
+          </mat-panel-title>
+          <mat-panel-description>
+            
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-form-field style="width: 95%;">
+            <textarea matInput (change)="answer(question, $event)"
+            placeholder="Escribe tu respuesta"></textarea>
+        </mat-form-field>
+      </mat-expansion-panel>
+</div>
+<div mat-dialog-actions>
+    <button mat-button color="warn" (click)="cancel()">Cancelar</button>
+    <button mat-button color="primary" [mat-dialog-close]="answers">Responder</button>
+</div>
