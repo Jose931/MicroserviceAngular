@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Answer } from '../models/answer';
 import { Observable } from 'rxjs';
 import { BASE_ENDPOINT } from '../app';
+import { Student } from '../models/student';
+import { Exam } from '../models/exam';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +23,9 @@ export class AnswerService {
       answers, 
       {headers: this.head}
     );
+  }
+
+  public getAnswerByStudentByExam(student: Student, exam: Exam): Observable<Answer[]>{
+    return this.http.get<Answer[]>(`${this.baseEndpoint}/student/${student.id}/exam/${exam.id}`);
   }
 }
